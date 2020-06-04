@@ -1,7 +1,8 @@
 <?php
-echo '<pre>';
-        print_r($_POST);
-        echo '<pre>';
+session_start();
+// echo '<pre>';
+//         print_r($_POST);
+//         echo '<pre>';
 
 //estamos trabalhlalndo na montagem do texto
 
@@ -11,12 +12,16 @@ echo '<pre>';
 
         //implode converte um array em uma string
 
-        $texto = $titulo . '#' . $categoria . '#' .$descricao . PHP_EOL; 
+        $texto = $_SESSION['id'] . '#' . $titulo . '#' . $categoria . '#' .$descricao . PHP_EOL; 
         //abrindo arquivo
-        $arquivo =  fopen('arquivo.txt','a');
-        //escrevwndo texto
+        $arquivo =  fopen('../../app_help_desk/arquivo.txt','a');
+
+        
+
+        //escrevendo texto
         fwrite($arquivo,$texto);
 
         //fechando arquivo
         fclose($arquivo);
+        header('Location: abrir_chamado.php');
 ?>
